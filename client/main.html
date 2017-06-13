@@ -1,0 +1,37 @@
+<head>
+  <title>OntarioApp</title>
+</head>
+
+<body>
+  <h1>Welcome {{currentUser.username}}</h1>
+
+  {{> loginButtons}}
+  <br>
+  {{> main}}
+</body>
+
+
+<template name="main">
+
+{{#if currentUser}}
+  <form class="new-message">
+    <input type="text" name="text" placeholder="Type to add new message" />
+    <button type="submit">Submit Message</button>
+  </form>
+{{/if}}
+
+  Posted Messages:<br>
+  <ul>
+  {{#each messages}}
+    <li>
+        <li><span class="text"><strong>{{username}}</strong></span> [{{this.createdAt}}]</li>
+        <ul>{{this.text}}
+          {{#if isOwner}}
+            <button class="delete">delete</button>
+          {{/if}}
+        </ul>
+        <br>
+    </li>
+  {{/each}}
+</ul>
+</template>
